@@ -11,59 +11,58 @@ import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity {
 
+    DatabaseHelper dbHelper;
     private static final String TAG = "SignUp";
-    DatabaseHelper mDatabaseHelper;
     private Button signup_btn;
-    private EditText etName;
+    private EditText edName;
+    private EditText edEmail;
+    private EditText edPwd;
+    private EditText edPwd2;
+    private EditText edAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        signup_btn = findViewById(R.id.btn_signup);
-        etName = findViewById(R.id.ed_name);
-        mDatabaseHelper = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(this);
+        signup_btn = (Button)findViewById(R.id.btn_signup);
+        edName = (EditText)findViewById(R.id.ed_name);
+        edEmail = (EditText)findViewById(R.id.ed_email);
+        edPwd = (EditText)findViewById(R.id.ed_pwd);
+        edPwd2 = (EditText)findViewById(R.id.ed_pwd_2);
+        edAddress = (EditText)findViewById(R.id.ed_address);
+
 
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newEntry = etName.getText().toString();
-
-                if(etName.length() != 0) {
-
+                boolean result = AddData();
+                if (result) {
+                    Intent intent = new Intent(SignUp.this, Home.class);
+                    startActivity(intent);
                 }
-                else {
-                    toastMessage("You must put something in the name field");
-                }
-            }
-        });
-
-        signup_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SignUp.this, Home.class);
-                startActivity(intent);
             }
         });
 
     }
 
-    public void AddData (String newEntry) {
-        boolean insertData = mDatabaseHelper.addData(newEntry);
+    public boolean AddData() {
 
-        if (insertData) {
-            toastMessage("Data successfully inserted");
-        }
-        else {
-            toastMessage("Something went wrong");
-        }
+        boolean isInserted = dbHelper.addData(edName.getText().toString(),
+                        edPwd.getText().toString(),
+                        edEmail.getText().toString(),
+                        edAddress.getText().toString(),
+                        "null", 0, false);
+
+        if (isInserted)
+            Toast.makeText(SignUp.this, "Data is inserted successfully", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(SignUp.this, "Data is NOT inserted successfully", Toast.LENGTH_LONG).show();
+
+        return isInserted;
     }
 
-    private void toastMessage(String message) {
-
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onStop() {
