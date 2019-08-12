@@ -168,7 +168,7 @@
             android:elevation="10dp"
             android:ems="10"
             android:hint="Email ID"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

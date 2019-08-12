@@ -52,7 +52,7 @@ public class SignUp extends AppCompatActivity {
                 final String name = edName.getText().toString();
                 final String password = edPwd.getText().toString();
                 final String verifyPass = edPwd2.getText().toString();
-                final String emailid = edEmail.getText().toString();
+                String emailid = edEmail.getText().toString();
                 final String homeaddress = edAddress.getText().toString();
                 final String phone = edphone.getText().toString();
 
@@ -66,13 +66,27 @@ public class SignUp extends AppCompatActivity {
                 final Map<String, Object> dataMap = new HashMap<String, Object>();
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("djka");
-                myRef.child("kiausbflkdnf").setValue("creditcarfhggggggggds");
+                DatabaseReference myRef = database.getReference("Users");
+               // myRef.child("kiausbflkdnf").setValue("creditcarfhggggggggds");
+                String[] email = emailid.split("@");
+                if(!email[1].equals("citrix.com")) {
 
-                //myRef.updateChildren(dataMap);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                        builder.setMessage("Email id has to be a citrix email")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
 
-                Intent intent = new Intent(SignUp.this, Home.class);
-                startActivity(intent);
+                }
+                else {
+
+                    dataMap.put(email[0], profileValue.toMap());
+                    myRef.updateChildren(dataMap);
+                    //myRef.updateChildren(dataMap);
+
+                    Intent intent = new Intent(SignUp.this, Home.class);
+                    startActivity(intent);
+                }
 
 
 

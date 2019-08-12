@@ -19,7 +19,9 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ProfileValue pv = new ProfileValue();
 
+        System.out.println("jshfkjasdghf "+ pv.getuserEmail());
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
