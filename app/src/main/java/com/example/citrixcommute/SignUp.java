@@ -3,6 +3,7 @@ package com.example.citrixcommute;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +28,7 @@ public class SignUp extends AppCompatActivity {
     private EditText edPwd2;
     private EditText edAddress;
     private EditText edphone;
+    private Session session;//global variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         Button signup_btn = findViewById(R.id.btn_signup);
-        signup_btn = (Button)findViewById(R.id.btn_signup);
 
-//        dbHelper = new DatabaseHelper(this);
         signup_btn = (Button)findViewById(R.id.btn_signup);
         edName = (EditText)findViewById(R.id.ed_name);
         edEmail = (EditText)findViewById(R.id.ed_email);
@@ -72,44 +72,28 @@ public class SignUp extends AppCompatActivity {
                 if(!email[1].equals("citrix.com")) {
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
-                        builder.setMessage("Email id has to be a citrix email")
+                        builder.setMessage("Please Enter a Citrix Email ID")
                                 .setNegativeButton("Retry", null)
                                 .create()
                                 .show();
 
                 }
                 else {
-
                     dataMap.put(email[0], profileValue.toMap());
                     myRef.updateChildren(dataMap);
-                    //myRef.updateChildren(dataMap);
-
+                    session = new Session(getApplicationContext());
+                    session.setusename(name);
+                    session.setuserEmail(emailid);
+                    session.setuserAddress(homeaddress);
+                    session.setuserPhone(phone);
                     Intent intent = new Intent(SignUp.this, Home.class);
                     startActivity(intent);
                 }
-
-
-
             }
         });
 
     }
 
-//    public boolean AddData() {
-//
-//        boolean isInserted = dbHelper.addData(edName.getText().toString(),
-//                        edPwd.getText().toString(),
-//                        edEmail.getText().toString(),
-//                        edAddress.getText().toString(),
-//                        "null", 0, false);
-//
-//        if (isInserted)
-//            Toast.makeText(SignUp.this, "Data is inserted successfully", Toast.LENGTH_LONG).show();
-//        else
-//            Toast.makeText(SignUp.this, "Data is NOT inserted successfully", Toast.LENGTH_LONG).show();
-//
-//        return isInserted;
-//    }
 
 
     @Override

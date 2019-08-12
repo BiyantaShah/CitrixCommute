@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 public class Home extends AppCompatActivity {
+    private Session session;//global variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +20,8 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ProfileValue pv = new ProfileValue();
-
-        System.out.println("jshfkjasdghf "+ pv.getuserEmail());
+        session = new Session(getApplicationContext());
+        //System.out.println("afsljbafb----------" + session.getusename());
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
