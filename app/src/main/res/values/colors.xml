@@ -8,4 +8,6 @@
     <color name="my_app_white">#FFFFFF</color>
     <color name="material_bg_blue">#1E64AA</color>
     <color name="material_button_green">#50BE91</color>
+    <color name="material_button_light_blue">#5294D0</color>
+
 </resources>

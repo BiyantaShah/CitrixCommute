@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "175322988939",
+    "firebase_url": "https://citrixcommute2019.firebaseio.com",
+    "project_id": "citrixcommute2019",
+    "storage_bucket": "citrixcommute2019.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175322988939:android:3d92640a6005ada8",
+        "android_client_info": {
+          "package_name": "com.example.citrixcommute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175322988939-m27lvf46aqmbt4i91nrj6i9s6p9vlijd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFNVstPoMx4ryEKwMyXrpep5UkGYeMyIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175322988939-m27lvf46aqmbt4i91nrj6i9s6p9vlijd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
