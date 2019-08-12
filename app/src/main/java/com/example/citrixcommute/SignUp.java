@@ -15,16 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUp extends AppCompatActivity {
-
-import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SignUp extends AppCompatActivity {
 
@@ -84,39 +74,7 @@ public class SignUp extends AppCompatActivity {
                 Intent intent = new Intent(SignUp.this, Home.class);
                 startActivity(intent);
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
 
-                            if (!password.equals(verifyPass)) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
-                                builder.setMessage("Both passwords need to match")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
-
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
-                                Intent intent = new Intent(SignUp.this, Home.class);
-                                SignUp.this.startActivity(intent);
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
-                                builder.setMessage("Register Failed")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                SignupRequest registerRequest = new SignupRequest(name, password, emailid, homeaddress, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(SignUp.this);
-                queue.add(registerRequest);
 
             }
         });
